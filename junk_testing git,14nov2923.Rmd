@@ -54,3 +54,52 @@ amnh<-amnh_all[,c("pit_number", "record_number","capture_number","genus","specie
 amnh$genusspecies<-paste(amnh$genus,amnh$species,sep=" ")
 ```
 
+
+#Lets subset out only the pit tagged animals from the AMNH capture database.  We use the grep function to include all rows that have a value in the pit_number colum that begins with 9.  Note that if we want only the 989 sized pit tags we would simply replace 9 with 989, etc. Here though we simply want all the captures that have pit tags
+
+```{r subset out the pits}
+amnhpits<-amnh[grep("9",amnh$pit_number),]
+```
+
+
+## Now lets get the first, second, third, fourth, etc capture records
+```{r subset out different capture numbers}
+amnhpits_capture1<-subset(amnhpits,capture_number==0)
+amnhpits_capture2<-subset(amnhpits,capture_number==1) 
+amnhpits_capture3<-subset(amnhpits,capture_number==2)
+amnhpits_capture4<-subset(amnhpits,capture_number==3)
+amnhpits_capture5<-subset(amnhpits,capture_number==4)
+amnhpits_capture6<-subset(amnhpits,capture_number==5)
+amnhpits_allrecaps<-subset(amnhpits,capture_number>0)
+
+should_be_zero<-nrow(amnhpits)-nrow(amnhpits_capture1)-nrow(amnhpits_capture2)-nrow(amnhpits_capture3)-nrow(amnhpits_capture4)-nrow(amnhpits_capture5)-nrow(amnhpits_capture6)
+should_be_zero
+
+Should_also_be_zero<-nrow(amnhpits_allrecaps)-nrow(amnhpits_capture2)-nrow(amnhpits_capture3)-nrow(amnhpits_capture4)-nrow(amnhpits_capture5)-nrow(amnhpits_capture6)
+Should_also_be_zero
+```
+
+
+#Table 1: The number of individual bats that we have for each capture_number.  0 is the first capture, 1 is second, etc
+
+```{r}
+table1<-table(amnhpits$genusspecies,amnhpits$capture_number)
+table1<-addmargins(table1)
+table1
+```
+
+##Table 2:  Look at the number of bats by species captured each trip down
+
+```{r}
+table2<-table(amnhpits$genusspecies,amnhpits$expedition)
+```
+
+##Table 3:  Look at the age of bats at the first capture 
+
+```{r}
+table3<-table(amnhpits_capture1$genusspecies,amnhpits_capture1$age)
+table3<-addmargins(table3)
+table3
+```
+
+
