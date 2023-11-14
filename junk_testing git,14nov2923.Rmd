@@ -25,9 +25,9 @@ use_git_config(user.name = "hughbroders", user.email = "hugh.broders@uwaterloo.c
 use_git()
 ```
 
+#just adding some committ testing junk some more
 
-
-
+junk jghjhgjkgkugkgggugkh
 
 #for a new project 
 ```{r set the working directory}
