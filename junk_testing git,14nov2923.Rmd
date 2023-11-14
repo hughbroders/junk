@@ -38,12 +38,19 @@ setwd("/Users/hughbroders/documents/junk")
 getwd()
 ```
 
-## 
+## Lets load some data and mess around
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r bring in the csv file}
+amnh_all<-read.table("/Users/hughbroders/documents/research/belize/1-data/amnh_full_datasheet/amnh8_24oct2023.csv", stringsAsFactors=FALSE, sep=",",header=T)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r seleect columns we need for pit work}
+amnh<-amnh_all[,c("pit_number", "record_number","capture_number","genus","species","sex", "country","district","specific_location","net_site","method","lat", "long","expedition","ymd","time","repro_status","age")]
+```
+
+##For summary, lets create a genus species column
+```{r make a new column of genus species}
+amnh$genusspecies<-paste(amnh$genus,amnh$species,sep=" ")
+```
+
