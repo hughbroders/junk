@@ -1,0 +1,46 @@
+---
+title: "Setting up for git"
+author: "Broders"
+date: "2023-11-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+#for a new project.  
+```{r set the working directory}
+setwd("/Users/hughbroders/documents/junk")
+getwd()
+```
+
+#usethis package to initialize the git.  Could also just select the git repo option on the new project- new directory-new project option
+
+```{r}
+library(usethis)
+use_git_config(user.name = "hughbroders", user.email = "hugh.broders@uwaterloo.ca")
+use_git()
+```
+
+
+
+
+
+#for a new project 
+```{r set the working directory}
+setwd("/Users/hughbroders/documents/junk")
+getwd()
+```
+
+## 
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
